@@ -14,22 +14,32 @@ def main():
     }
 
     # Crear instancia de InterfazAWS
+
     interfaz = InterfazAWS(config_data["session_id"], config_data["cpu_id"])
 
+    # Verificacion de implementacion de singleton
+    i2 = InterfazAWS(config_data["session_id"], config_data["cpu_id"])
+
+    if interfaz == i2:
+        print('Son instancias iguales')
+    else:
+        print('Son instancias diferentes')
+
+
     # Consultar datos de la sede en CorporateData
-    print("\nConsulta de datos de la sede")
+    print("\nConsultando datos de la sede")
     print(interfaz.consultar_datos_sede(config_data["session_id"], config_data["cpu_id"], config_data["id"]))
 
-    # Consultar CUIT de la sede en CorporateData
+    # # Consultar CUIT de la sede en CorporateData
     print("\nConsultando el CUIT de la sede")
     print(interfaz.consultar_cuit(config_data["session_id"], config_data["cpu_id"], config_data["id"]))
 
     # Generar un nuevo ID de secuencia en CorporateData
-    print("\nGenerando un nuevo ID de secuencia")
+    print("\nGenerando ID de secuencia")
     print(interfaz.generar_id_secuencia(config_data["session_id"], config_data["cpu_id"], config_data["id"]))
 
     # Listar todos los datos en CorporateData
-    print("\nListando todos los datos")
+    print("\nListando datos de CorporateData...")
     print(interfaz.listar_corporate_data())
 
     # Registrar log en CorporateLog

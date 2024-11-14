@@ -1,14 +1,12 @@
 import boto3
 import json
 import uuid
-
-# Producirá un listado de todas las entradas contenidas en la tabla
-# CorporateLog para una clave de CPU determinada.
+from InterfazAWS import InterfazAWS
 
 def listar_logs_por_cpu():
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('CorporateLog')
-    cpu_id = str(uuid.getnode())  # ID CPU ACTUAL
+    cpu_id = str(uuid.getnode()) 
 
     try:
         response = table.scan(
@@ -21,4 +19,16 @@ def listar_logs_por_cpu():
         return json.dumps({"error": f"Error al acceder a la base de datos: {e}"})
 
 if __name__ == "__main__":
+
+    config_data = {
+        "session_id": str(uuid.uuid4()),
+        "cpu_id": str(uuid.getnode()),
+        "id": "UADER-FCyT-IS2",
+    }
+
+    i3 = InterfazAWS(config_data["session_id"], config_data["cpu_id"])
+
+    print('Registrando log:', i3.registrar_log())
+
     print(listar_logs_por_cpu())
+    

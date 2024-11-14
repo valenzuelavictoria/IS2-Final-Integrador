@@ -1,8 +1,9 @@
 import json
 from CorporateLog import CorporateLog
 from CorporateData import CorporateData
+from SingletonMeta import SingletonMeta;
 
-class InterfazAWS:
+class InterfazAWS(metaclass=SingletonMeta):
     def __init__(self, session_id, cpu_id):
         self.session_id = session_id
         self.cpu_id = cpu_id

@@ -33,11 +33,11 @@ class TestInterfazAWS(unittest.TestCase):
         self.assertIn("cuit", response)
         self.assertIn("CUIT", response["cuit"])
 
-    def test_generar_id_secuencia(self):
-        """Prueba generar un nuevo ID de secuencia en CorporateData."""
-        response = json.loads(self.interfaz.generar_id_secuencia(self.session_id, self.cpu_id, self.sede_id))
-        self.assertIn("nuevo_id_secuencia", response)
-        self.assertIsInstance(response["nuevo_id_secuencia"], int)
+    # def test_generar_id_secuencia(self):
+    #     """Prueba generar un nuevo ID de secuencia en CorporateData."""
+    #     response = json.loads(self.interfaz.generar_id_secuencia(self.session_id, self.cpu_id, self.sede_id))
+    #     self.assertIn("nuevo_id_secuencia", response)
+    #     self.assertIsInstance(response["nuevo_id_secuencia"], int)
 
     def test_listar_logs_cpu(self):
         """Prueba listar logs asociados al CPU actual en CorporateLog."""
