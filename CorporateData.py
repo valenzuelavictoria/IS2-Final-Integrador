@@ -13,7 +13,7 @@ def decimal_default(obj):
 class CorporateData(metaclass=SingletonMeta):
     """Clase que maneja los datos corporativos con implementación Singleton."""
     
-    def __init__(self):
+    def _init_(self):
         self.dynamodb = boto3.resource('dynamodb')
         self.table = self.dynamodb.Table('CorporateData')
     

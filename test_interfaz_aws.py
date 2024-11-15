@@ -69,5 +69,5 @@ class TestInterfazAWS(unittest.TestCase):
         self.assertIn("logs_por_cpu", response)
         self.assertIsInstance(response["logs_por_cpu"], list)
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     unittest.main()

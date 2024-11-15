@@ -1,27 +1,33 @@
 import boto3
 import json
-from decimal import Decimal
+import uuid
+from InterfazAWS import InterfazAWS
 
-# Retorna una estructura JSON con todos los campos de la tabla
-# CorporateData
-
-def decimal_default(obj):
-    if isinstance(obj, Decimal):
-        return float(obj)  # O usa int(obj) si todos los valores son enteros
-    raise TypeError
-
-def listar_corporate_data():
+def listar_logs_por_cpu():
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('CorporateData')
+    table = dynamodb.Table('CorporateLog')
+    cpu_id = str(uuid.getnode()) 
 
     try:
-        response = table.scan()  # Scan a todos los elementos de la tabla
-        data = response.get('Items', [])
-        
-        # Convierte todos los elementos en 'data' utilizando la función decimal_default
-        return json.dumps({"corporate_data": data}, indent=4, default=decimal_default)
+        response = table.scan(
+            FilterExpression="CPUid = :CPUid",
+            ExpressionAttributeValues={":CPUid": cpu_id}
+        )
+        logs = response.get('Items', [])
+        return json.dumps({"logs_por_cpu": logs}, indent=4)
     except Exception as e:
         return json.dumps({"error": f"Error al acceder a la base de datos: {e}"})
 
-if __name__ == "__main__":
-    print(listar_corporate_data())
+if _name_ == "_main_":
+
+    config_data = {
+        "session_id": str(uuid.uuid4()),
+        "cpu_id": str(uuid.getnode()),
+        "id": "UADER-FCyT-IS2",
+    }
+
+    i3 = InterfazAWS(config_data["session_id"], config_data["cpu_id"])
+
+    print('Registrando log:', i3.registrar_log())
+
+    print(listar_logs_por_cpu())

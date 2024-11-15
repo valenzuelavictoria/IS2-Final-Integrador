@@ -21,9 +21,9 @@ def main():
     i2 = InterfazAWS(config_data["session_id"], config_data["cpu_id"])
 
     if interfaz == i2:
-        print('Son instancias iguales')
+        print('iguales')
     else:
-        print('Son instancias diferentes')
+        print('diferentes')
 
 
     # Consultar datos de la sede en CorporateData
@@ -39,7 +39,7 @@ def main():
     print(interfaz.generar_id_secuencia(config_data["session_id"], config_data["cpu_id"], config_data["id"]))
 
     # Listar todos los datos en CorporateData
-    print("\nListando datos de CorporateData...")
+    print("\nListando datos de CorporateData")
     print(interfaz.listar_corporate_data())
 
     # Registrar log en CorporateLog
@@ -50,5 +50,5 @@ def main():
     print("\nListando logs asociados al CPU")
     print(interfaz.listar_logs_por_cpu())
 
-if __name__ == "__main__":
-    main()
+    if _name_ == "_main_":
+        main()

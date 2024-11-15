@@ -34,5 +34,5 @@ class TestInterfazAWS(unittest.TestCase):
         response = self.interfaz.consultar_datos_sede(self.session_id, self.cpu_id, "")
         self.assertIn("error", response, "No se manejó correctamente el acceso con argumentos faltantes")
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     unittest.main()

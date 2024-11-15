@@ -6,7 +6,7 @@ import logging
 from SingletonMeta import SingletonMeta
 
 class CorporateLog(metaclass=SingletonMeta):
-    def __init__(self):
+    def _init_(self):
         self.CPUid = str(uuid.getnode())
         self.dynamodb = boto3.resource('dynamodb')
         self.table = self.dynamodb.Table('CorporateLog')
